@@ -66,6 +66,10 @@
   0%, 100% { border-color: rgba(0,168,255,0.3); box-shadow: 0 0 10px rgba(0,168,255,0.2); }
   50%       { border-color: rgba(0,229,255,0.7); box-shadow: 0 0 30px rgba(0,229,255,0.5); }
 }
+@keyframes shimmer {
+  0%   { background-position: 200% center; }
+  100% { background-position: -200% center; }
+}
 
 /* ─────────────────────────────────────────
    CSS CUSTOM PROPERTIES — DESIGN SYSTEM

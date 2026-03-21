@@ -16,20 +16,20 @@ export const PLANS = {
   },
   MONTHLY: {
     name: "Pro Monthly",
-    price: 9.99,
+    price: 9,
     toolUsagePerDay: Infinity,
     // Price IDs are NEXT_PUBLIC_ — safe to expose (not secrets)
     stripeId: process.env.NEXT_PUBLIC_STRIPE_MONTHLY_PRICE_ID,
   },
   YEARLY: {
     name: "Pro Yearly",
-    price: 99.99,
+    price: 99,
     toolUsagePerDay: Infinity,
     stripeId: process.env.NEXT_PUBLIC_STRIPE_YEARLY_PRICE_ID,
   },
   LIFETIME: {
     name: "Lifetime",
-    price: 199.99,
+    price: 199,
     toolUsagePerDay: Infinity,
     stripeId: process.env.NEXT_PUBLIC_STRIPE_LIFETIME_PRICE_ID,
   },

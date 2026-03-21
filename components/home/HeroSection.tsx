@@ -175,10 +175,18 @@ export default function HeroSection() {
           animate="visible"
           className="flex flex-col items-center gap-6 max-w-5xl mx-auto"
         >
-          {/* Eyebrow */}
+          {/* Eyebrow — shimmer gradient */}
           <motion.p
             variants={itemVariants}
-            className="text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-[var(--accent-blue)]"
+            className="text-xs sm:text-sm font-semibold uppercase tracking-[0.2em]"
+            style={{
+              background: "linear-gradient(90deg, #0066FF 0%, #00FFD1 30%, #ffffff 50%, #00FFD1 70%, #0066FF 100%)",
+              backgroundSize: "200% auto",
+              WebkitBackgroundClip: "text",
+              backgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              animation: "shimmer 4s linear infinite",
+            }}
           >
             — Ninja the Strategic Engineer & Your Growth Partner —
           </motion.p>

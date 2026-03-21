@@ -28,7 +28,7 @@ const CARD_DATA = {
   },
   pro: {
     name: "Pro",
-    price: { monthly: "$9.99", yearly: "$99.99" },
+    price: { monthly: "$9", yearly: "$99" },
     period: { monthly: "per month", yearly: "per year" },
     description: "Unlimited tools, full power.",
     badge: "Most Popular",
@@ -45,7 +45,7 @@ const CARD_DATA = {
   },
   lifetime: {
     name: "Lifetime",
-    price: { monthly: "$199.99", yearly: "$199.99" },
+    price: { monthly: "$199", yearly: "$199" },
     period: { monthly: "one-time payment", yearly: "one-time payment" },
     description: "Pay once, own it forever.",
     badge: null,
@@ -146,7 +146,7 @@ export function PricingCard({ variant, billingCycle = "monthly", onSelect, loadi
         </div>
         <span className="text-sm text-[var(--text-muted)]">{data.period[billingCycle]}</span>
         {variant === "pro" && billingCycle === "yearly" && (
-          <p className="text-xs text-[#00E676] mt-1 font-medium">Save $19.89 vs monthly</p>
+          <p className="text-xs text-[#00E676] mt-1 font-medium">Save $9 vs monthly billing</p>
         )}
       </div>
 

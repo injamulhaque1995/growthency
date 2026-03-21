@@ -95,8 +95,20 @@ export function Navbar() {
         <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
-            <Link href="/" className="flex items-center shrink-0 group">
-              <span className="font-syne text-xl font-extrabold tracking-tight text-[var(--text-primary)] group-hover:opacity-90 transition-opacity">
+            <Link href="/" className="flex items-center gap-2.5 shrink-0 group">
+              <svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" fill="none" className="w-8 h-8 flex-shrink-0 transition-transform duration-300 group-hover:scale-105">
+                <defs>
+                  <linearGradient id="nav-logo-grad" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stopColor="#0066FF"/>
+                    <stop offset="100%" stopColor="#00FFD1"/>
+                  </linearGradient>
+                </defs>
+                <rect width="36" height="36" rx="9" fill="url(#nav-logo-grad)"/>
+                <rect x="6" y="22" width="5.5" height="9" rx="1.5" fill="white" opacity="0.65"/>
+                <rect x="15" y="15" width="5.5" height="16" rx="1.5" fill="white" opacity="0.82"/>
+                <rect x="24.5" y="8" width="5.5" height="23" rx="1.5" fill="white"/>
+              </svg>
+              <span className="font-extrabold text-xl tracking-tight text-[var(--text-primary)] group-hover:opacity-90 transition-opacity">
                 GROWTH
                 <span style={{ background: "linear-gradient(135deg,#0066FF,#00FFD1)", WebkitBackgroundClip: "text", backgroundClip: "text", WebkitTextFillColor: "transparent" }}>
                   ENCY
@@ -170,8 +182,20 @@ export function Navbar() {
               className="fixed top-0 right-0 bottom-0 z-50 w-72 bg-[var(--bg-surface)] border-l border-[var(--border-default)] shadow-2xl lg:hidden flex flex-col"
             >
               <div className="flex items-center justify-between px-5 h-16 border-b border-[var(--border-default)]">
-                <Link href="/" className="font-syne text-lg font-extrabold">
-                  GROWTH<span style={{ background: "linear-gradient(135deg,#0066FF,#00FFD1)", WebkitBackgroundClip: "text", backgroundClip: "text", WebkitTextFillColor: "transparent" }}>ENCY</span>
+                <Link href="/" className="flex items-center gap-2">
+                  <svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" fill="none" className="w-7 h-7 flex-shrink-0">
+                    <defs>
+                      <linearGradient id="mob-logo-grad" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0%" stopColor="#0066FF"/>
+                        <stop offset="100%" stopColor="#00FFD1"/>
+                      </linearGradient>
+                    </defs>
+                    <rect width="36" height="36" rx="9" fill="url(#mob-logo-grad)"/>
+                    <rect x="6" y="22" width="5.5" height="9" rx="1.5" fill="white" opacity="0.65"/>
+                    <rect x="15" y="15" width="5.5" height="16" rx="1.5" fill="white" opacity="0.82"/>
+                    <rect x="24.5" y="8" width="5.5" height="23" rx="1.5" fill="white"/>
+                  </svg>
+                  <span className="font-extrabold text-lg">GROWTH<span style={{ background: "linear-gradient(135deg,#0066FF,#00FFD1)", WebkitBackgroundClip: "text", backgroundClip: "text", WebkitTextFillColor: "transparent" }}>ENCY</span></span>
                 </Link>
                 <button onClick={() => setMobileOpen(false)} className="p-2 rounded-lg text-[var(--text-secondary)] hover:bg-[var(--bg-card)] transition-colors">
                   <X size={20} />
