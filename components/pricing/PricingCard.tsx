@@ -1,7 +1,7 @@
 import { Check } from "lucide-react"
 import { cn } from "@/lib/utils"
 
-export type PricingVariant = "free" | "pro" | "lifetime"
+export type PricingVariant = "free" | "pro" | "yearly" | "lifetime"
 
 interface PricingCardProps {
   variant: PricingVariant
@@ -43,6 +43,23 @@ const CARD_DATA = {
     cta: "Get Pro",
     ctaVariant: "primary" as const,
   },
+  yearly: {
+    name: "Pro Yearly",
+    price: { monthly: "$99", yearly: "$99" },
+    period: { monthly: "per year", yearly: "per year" },
+    description: "Best value, billed annually.",
+    badge: "Best Value",
+    features: [
+      "Everything in Pro Monthly",
+      "Save $9 vs monthly billing",
+      "Unlimited tool uses",
+      "Access to all pro tools",
+      "Priority support",
+      "Custom build based on your request",
+    ],
+    cta: "Get Yearly Plan",
+    ctaVariant: "outline" as const,
+  },
   lifetime: {
     name: "Lifetime",
     price: { monthly: "$199", yearly: "$199" },
@@ -65,35 +82,45 @@ const CARD_DATA = {
 export function PricingCard({ variant, billingCycle = "monthly", onSelect, loading }: PricingCardProps) {
   const data = CARD_DATA[variant]
   const isPro = variant === "pro"
+  const isYearly = variant === "yearly"
   const isLifetime = variant === "lifetime"
+  const isHighlighted = isPro || isYearly
 
   return (
     <div
       className={cn(
         "relative rounded-2xl p-8 flex flex-col h-full transition-all duration-300",
-        isPro
-          ? "scale-[1.03] shadow-[0_0_60px_rgba(0,102,255,0.25)]"
+        isHighlighted
+          ? "shadow-[0_0_50px_rgba(0,102,255,0.2)]"
           : "hover:-translate-y-1"
       )}
       style={{
         background: isPro
           ? "linear-gradient(145deg, rgba(0,30,80,0.9), rgba(0,15,40,0.95))"
+          : isYearly
+          ? "linear-gradient(145deg, rgba(0,20,60,0.85), rgba(0,10,30,0.9))"
           : "var(--bg-card)",
         border: isPro
           ? "1px solid rgba(0,168,255,0.5)"
+          : isYearly
+          ? "1px solid rgba(0,229,255,0.45)"
           : isLifetime
           ? "1px solid rgba(0,229,255,0.3)"
           : "1px solid var(--border-default)",
       }}
     >
-      {/* Most Popular badge */}
+      {/* Badge */}
       {data.badge && (
         <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-10">
           <span
             className="inline-block px-5 py-1.5 rounded-full text-xs font-bold text-white whitespace-nowrap"
             style={{
-              background: "linear-gradient(135deg, #0066FF, #00FFD1)",
-              boxShadow: "0 0 20px rgba(0,102,255,0.5)",
+              background: isYearly
+                ? "linear-gradient(135deg, #00E5FF, #00FFD1)"
+                : "linear-gradient(135deg, #0066FF, #00FFD1)",
+              boxShadow: isYearly
+                ? "0 0 20px rgba(0,229,255,0.5)"
+                : "0 0 20px rgba(0,102,255,0.5)",
             }}
           >
             {data.badge}
@@ -101,12 +128,16 @@ export function PricingCard({ variant, billingCycle = "monthly", onSelect, loadi
         </div>
       )}
 
-      {/* Top glow for pro */}
-      {isPro && (
+      {/* Top glow */}
+      {isHighlighted && (
         <div
           aria-hidden="true"
           className="absolute top-0 left-0 right-0 h-0.5 rounded-t-2xl"
-          style={{ background: "linear-gradient(90deg, #0066FF, #00FFD1)" }}
+          style={{
+            background: isYearly
+              ? "linear-gradient(90deg, #00B4D8, #00FFD1)"
+              : "linear-gradient(90deg, #0066FF, #00FFD1)",
+          }}
         />
       )}
 
@@ -131,7 +162,7 @@ export function PricingCard({ variant, billingCycle = "monthly", onSelect, loadi
                     backgroundClip: "text",
                     WebkitTextFillColor: "transparent",
                   }
-                : isLifetime
+                : isYearly || isLifetime
                 ? {
                     background: "linear-gradient(135deg, #00E5FF, #00FFD1)",
                     WebkitBackgroundClip: "text",
@@ -145,9 +176,6 @@ export function PricingCard({ variant, billingCycle = "monthly", onSelect, loadi
           </span>
         </div>
         <span className="text-sm text-[var(--text-muted)]">{data.period[billingCycle]}</span>
-        {variant === "pro" && billingCycle === "yearly" && (
-          <p className="text-xs text-[#00E676] mt-1 font-medium">Save $9 vs monthly billing</p>
-        )}
       </div>
 
       {/* Features */}
@@ -159,7 +187,7 @@ export function PricingCard({ variant, billingCycle = "monthly", onSelect, loadi
               style={{
                 background: isPro
                   ? "rgba(0,168,255,0.2)"
-                  : isLifetime
+                  : isYearly || isLifetime
                   ? "rgba(0,229,255,0.15)"
                   : "rgba(0,168,255,0.1)",
               }}
@@ -183,6 +211,12 @@ export function PricingCard({ variant, billingCycle = "monthly", onSelect, loadi
           isPro
             ? {
                 background: "linear-gradient(135deg, #0066FF, #00FFD1)",
+                color: "#fff",
+                border: "none",
+              }
+            : isYearly
+            ? {
+                background: "linear-gradient(135deg, #00B4D8, #00FFD1)",
                 color: "#fff",
                 border: "none",
               }

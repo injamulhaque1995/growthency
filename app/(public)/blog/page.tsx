@@ -8,11 +8,11 @@ import { BlogFilterClient } from "./BlogFilterClient"
 
 /* ── Metadata ── */
 export const metadata: Metadata = {
-  title: `Blog — ${SITE_NAME}`,
+  title: "Blog",
   description:
     "Insights, growth strategies, and deep-dives from the Growthency team on development, marketing, AI, and business growth.",
   openGraph: {
-    title: `Blog — ${SITE_NAME}`,
+    title: "Blog",
     url: `${SITE_URL}/blog`,
   },
 }

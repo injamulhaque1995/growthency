@@ -6,11 +6,11 @@ import { PricingFAQ } from "./PricingFAQ"
 
 /* ── Metadata ── */
 export const metadata: Metadata = {
-  title: `Pricing — ${SITE_NAME}`,
+  title: "Pricing",
   description:
     "Simple, transparent pricing. Start free, upgrade when you're ready. No hidden fees, no lock-in.",
   openGraph: {
-    title: `Pricing — ${SITE_NAME}`,
+    title: "Pricing",
     description: "Start free. Upgrade when you're ready. 30-day money-back guarantee.",
     url: `${SITE_URL}/pricing`,
   },

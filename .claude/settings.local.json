@@ -49,7 +49,13 @@
       "Bash(find G:/growthency/components -type f \\\\\\(-name *.tsx -o -name *.ts \\\\\\))",
       "Bash(ls -la G:/growthency/app/'\\(public\\)'/tools/)",
       "Bash(ls -la G:/growthency/app/'\\(public\\)'/blog/)",
-      "Bash(ls -la G:/growthency/app/'\\(public\\)'/pricing/)"
+      "Bash(ls -la G:/growthency/app/'\\(public\\)'/pricing/)",
+      "Bash(ls G:/growthency/.env*)",
+      "Bash(ls G:/growthency/app/icon* G:/growthency/app/favicon*)",
+      "Bash(sed -i 's/`Tools — \\\\${SITE_NAME}`/\"\"Tools\"\"/g' \"app/\\(public\\)/tools/page.tsx\")",
+      "Bash(sed -i 's/`Blog — \\\\${SITE_NAME}`/\"\"Blog\"\"/g' \"app/\\(public\\)/blog/page.tsx\")",
+      "Bash(sed -i 's/`Pricing — \\\\${SITE_NAME}`/\"\"Pricing\"\"/g' \"app/\\(public\\)/pricing/page.tsx\")",
+      "Bash(sed -i 's/`About — \\\\${SITE_NAME}`/\"\"About\"\"/g' \"app/\\(public\\)/about/page.tsx\")"
     ]
   }
 }

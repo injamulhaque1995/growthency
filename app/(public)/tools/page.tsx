@@ -8,11 +8,11 @@ import { ToolsFilterClient } from "./ToolsFilterClient"
 
 /* ── Metadata ── */
 export const metadata: Metadata = {
-  title: `Tools — ${SITE_NAME}`,
+  title: "Tools",
   description:
     "Free and pro business growth tools for SEO, marketing, development, and more. Unlimited usage with Pro.",
   openGraph: {
-    title: `Tools — ${SITE_NAME}`,
+    title: "Tools",
     url: `${SITE_URL}/tools`,
   },
 }
