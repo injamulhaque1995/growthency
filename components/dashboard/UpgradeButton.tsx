@@ -20,7 +20,7 @@ export function UpgradeButton({
   className,
   size = "md",
 }: UpgradeButtonProps) {
-  const { user, isLoaded } = useUser()
+  const { user, isLoaded } = useClerkUser()
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
