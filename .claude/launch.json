@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "Growthency — Next.js Dev",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["node_modules/next/dist/bin/next", "dev"],
+      "port": 3000
+    },
+    {
+      "name": "Growthency — Convex Dev",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["node_modules/convex/bin/main.js", "dev"],
+      "port": 3210
+    }
+  ]
+}
