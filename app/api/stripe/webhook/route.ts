@@ -1,10 +1,8 @@
+export const dynamic = "force-dynamic"
+
 import Stripe from "stripe"
 // import { fetchMutation } from "convex/nextjs"
 // import { api } from "@/convex/_generated/api"
-
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: "2026-02-25.clover",
-})
 
 // Determine plan type from a Stripe checkout session
 function getPlanFromSession(
@@ -19,6 +17,9 @@ function getPlanFromSession(
 }
 
 export async function POST(req: Request) {
+  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY ?? "sk_placeholder", {
+    apiVersion: "2026-02-25.clover",
+  })
   const rawBody = await req.text()
   const sig = req.headers.get("stripe-signature")
 
