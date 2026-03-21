@@ -5,11 +5,11 @@ import { ContactForm } from "@/components/contact/ContactForm"
 
 /* ── Metadata ── */
 export const metadata: Metadata = {
-  title: `Contact — ${SITE_NAME}`,
+  title: "Contact",
   description:
     "Get in touch with the Growthency team. We reply within 24 hours and offer free project estimates.",
   openGraph: {
-    title: `Contact — ${SITE_NAME}`,
+    title: "Contact",
     url: `${SITE_URL}/contact`,
   },
 }

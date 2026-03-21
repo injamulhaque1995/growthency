@@ -4,10 +4,10 @@ import { SITE_NAME, SITE_URL } from "@/lib/constants"
 
 /* ── Metadata ── */
 export const metadata: Metadata = {
-  title: `Terms of Service — ${SITE_NAME}`,
+  title: "Terms of Service",
   description: `Terms of Service for ${SITE_NAME}. Your rights and responsibilities when using our platform.`,
   openGraph: {
-    title: `Terms of Service — ${SITE_NAME}`,
+    title: "Terms of Service",
     url: `${SITE_URL}/terms-of-service`,
   },
 }

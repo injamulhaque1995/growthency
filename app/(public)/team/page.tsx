@@ -7,11 +7,11 @@ import { Button } from "@/components/ui/Button"
 
 /* ── Metadata ── */
 export const metadata: Metadata = {
-  title: `Team — ${SITE_NAME}`,
+  title: "Team",
   description:
     "Meet the builders behind Growthency — engineers, designers, and marketers obsessed with your growth.",
   openGraph: {
-    title: `Team — ${SITE_NAME}`,
+    title: "Team",
     url: `${SITE_URL}/team`,
   },
 }

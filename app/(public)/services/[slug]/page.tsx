@@ -355,10 +355,10 @@ export async function generateMetadata({
   if (!service) return { title: "Not Found" }
 
   return {
-    title: `${service.name} — ${SITE_NAME}`,
+    title: service.name,
     description: service.description,
     openGraph: {
-      title: `${service.name} — ${SITE_NAME}`,
+      title: service.name,
       description: service.description,
       url: `${SITE_URL}/services/${slug}`,
     },

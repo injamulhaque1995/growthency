@@ -6,10 +6,10 @@ import { Button } from "@/components/ui/Button"
 
 /* ── Metadata ── */
 export const metadata: Metadata = {
-  title: `Refund Policy — ${SITE_NAME}`,
+  title: "Refund Policy",
   description: `30-day money-back guarantee. ${SITE_NAME}'s refund policy for subscriptions and one-time purchases.`,
   openGraph: {
-    title: `Refund Policy — ${SITE_NAME}`,
+    title: "Refund Policy",
     url: `${SITE_URL}/refund-policy`,
   },
 }

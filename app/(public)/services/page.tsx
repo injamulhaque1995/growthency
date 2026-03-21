@@ -18,11 +18,11 @@ import { Button } from "@/components/ui/Button"
 
 /* ── Metadata ── */
 export const metadata: Metadata = {
-  title: `Services — ${SITE_NAME}`,
+  title: "Services",
   description:
     "Full-stack web apps, mobile apps, digital marketing, UI/UX design, custom software, AI integration, and automations — all under one roof.",
   openGraph: {
-    title: `Services — ${SITE_NAME}`,
+    title: "Services",
     description:
       "Full-stack web apps, mobile apps, digital marketing, UI/UX design, custom software, AI integration, and automations.",
     url: `${SITE_URL}/services`,

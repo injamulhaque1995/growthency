@@ -4,10 +4,10 @@ import { SITE_NAME, SITE_URL } from "@/lib/constants"
 
 /* ── Metadata ── */
 export const metadata: Metadata = {
-  title: `Privacy Policy — ${SITE_NAME}`,
+  title: "Privacy Policy",
   description: `Privacy Policy for ${SITE_NAME}. Learn how we collect, use, and protect your data.`,
   openGraph: {
-    title: `Privacy Policy — ${SITE_NAME}`,
+    title: "Privacy Policy",
     url: `${SITE_URL}/privacy-policy`,
   },
 }

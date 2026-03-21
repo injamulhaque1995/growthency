@@ -54,10 +54,10 @@ export async function generateMetadata({
   if (!tool) return { title: "Not Found" }
 
   return {
-    title: `${tool.name} — ${SITE_NAME}`,
+    title: tool.name,
     description: tool.description,
     openGraph: {
-      title: `${tool.name} — ${SITE_NAME}`,
+      title: tool.name,
       description: tool.description,
       url: `${SITE_URL}/tools/${slug}`,
     },
