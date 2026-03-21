@@ -11,6 +11,9 @@ import {
   Code,
   Cpu,
   Zap,
+  Share2,
+  Video,
+  TrendingUp,
   Sparkles,
   ArrowRight,
 } from "lucide-react"
@@ -27,6 +30,9 @@ const ICON_MAP: Record<string, React.ElementType> = {
   Code,
   Cpu,
   Zap,
+  Share2,
+  Video,
+  TrendingUp,
 }
 
 /* ── Tilt card ── */

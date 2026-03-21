@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next"
-import { Syne, DM_Sans, JetBrains_Mono, Bebas_Neue } from "next/font/google"
+import { Inter } from "next/font/google"
 import { ClerkSafeProvider } from "@/components/providers/ClerkSafeProvider"
 import { ThemeProvider } from "next-themes"
 import { SITE_NAME, SITE_DESCRIPTION, SITE_URL } from "@/lib/constants"
@@ -9,31 +9,10 @@ import "@/styles/globals.css"
    FONTS
 ───────────────────────────────────────── */
 
-const syne = Syne({
+const inter = Inter({
   subsets: ["latin"],
-  weight: ["800"],
-  variable: "--font-syne",
-  display: "swap",
-})
-
-const dmSans = DM_Sans({
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--font-dm-sans",
-  display: "swap",
-})
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  weight: ["400"],
-  variable: "--font-mono",
-  display: "swap",
-})
-
-const bebasNeue = Bebas_Neue({
-  subsets: ["latin"],
-  weight: ["400"],
-  variable: "--font-bebas",
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
+  variable: "--font-inter",
   display: "swap",
 })
 
@@ -129,7 +108,7 @@ export default function RootLayout({
       <html
         lang="en"
         suppressHydrationWarning
-        className={`${syne.variable} ${dmSans.variable} ${jetbrainsMono.variable} ${bebasNeue.variable}`}
+        className={`${inter.variable}`}
       >
         <body className="min-h-screen antialiased bg-[var(--bg-primary)] text-[var(--text-primary)]">
           <ThemeProvider

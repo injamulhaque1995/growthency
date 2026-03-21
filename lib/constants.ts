@@ -100,6 +100,27 @@ export const SERVICES = [
       "Eliminate repetitive tasks with smart automations, saving you hours every week.",
     tagline: "Work smarter, not harder",
   },
+  {
+    slug: "social-media-management",
+    name: "Social Media Management",
+    icon: "Share2",
+    description: "Full-service social media management — content creation, scheduling, community management, and growth strategy across all major platforms.",
+    tagline: "Grow your social presence",
+  },
+  {
+    slug: "video-editing",
+    name: "Video Editing",
+    icon: "Video",
+    description: "Professional video editing for ads, reels, YouTube, and corporate content — hooks, captions, color grading, and motion graphics included.",
+    tagline: "Stories that convert",
+  },
+  {
+    slug: "paid-ads",
+    name: "Paid Ads",
+    icon: "TrendingUp",
+    description: "High-ROI paid advertising campaigns on Google, Meta, TikTok, and LinkedIn — from strategy and creative to optimization and reporting.",
+    tagline: "Ads that deliver ROI",
+  },
 ] as const
 
 /* ─────────────────────────────────────────
@@ -107,12 +128,12 @@ export const SERVICES = [
 ───────────────────────────────────────── */
 
 export const NAV_LINKS = [
+  { label: "Home", href: "/" },
   { label: "Services", href: "/services" },
   { label: "Tools", href: "/tools" },
   { label: "Blog", href: "/blog" },
   { label: "Pricing", href: "/pricing" },
   { label: "About", href: "/about" },
-  { label: "Contact", href: "/contact" },
 ] as const
 
 /* ─────────────────────────────────────────
