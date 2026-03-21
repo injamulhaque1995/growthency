@@ -2,16 +2,10 @@ import type { Metadata } from "next"
 import { Navbar } from "@/components/layout/Navbar"
 import { Footer } from "@/components/layout/Footer"
 import { ScrollToTop } from "@/components/layout/ScrollToTop"
+import { CustomCursor } from "@/components/shared/CustomCursor"
 
-export const metadata: Metadata = {
-  // Individual pages override this via their own exported metadata
-}
+export const metadata: Metadata = {}
 
-/**
- * Public layout wraps all marketing / public-facing pages with the
- * site-wide Navbar and Footer. Authenticated app routes (dashboard,
- * admin) use their own separate layouts and are not wrapped here.
- */
 export default function PublicLayout({
   children,
 }: {
@@ -19,6 +13,7 @@ export default function PublicLayout({
 }) {
   return (
     <div className="flex min-h-screen flex-col">
+      <CustomCursor />
       <Navbar />
       <main className="flex-1">{children}</main>
       <Footer />

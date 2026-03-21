@@ -42,7 +42,14 @@
       "Bash(curl -s http://localhost:3000/contact -o /dev/null -w \"contact:%{http_code}\")",
       "Bash(curl -s http://localhost:3000/about -o /dev/null -w \"about:%{http_code} \")",
       "Bash(curl -s http://localhost:3000/services -o /dev/null -w \"services:%{http_code} \")",
-      "Bash(curl -s http://localhost:3000/blog -o /dev/null -w \"blog:%{http_code}\")"
+      "Bash(curl -s http://localhost:3000/blog -o /dev/null -w \"blog:%{http_code}\")",
+      "Bash(gh auth:*)",
+      "Bash(node_modules/.bin/tsc --noEmit)",
+      "Bash(grep -r 'route group' G:/growthency/node_modules/next/dist/docs/01-app/03-api-reference/ --include=*.md -l)",
+      "Bash(find G:/growthency/components -type f \\\\\\(-name *.tsx -o -name *.ts \\\\\\))",
+      "Bash(ls -la G:/growthency/app/'\\(public\\)'/tools/)",
+      "Bash(ls -la G:/growthency/app/'\\(public\\)'/blog/)",
+      "Bash(ls -la G:/growthency/app/'\\(public\\)'/pricing/)"
     ]
   }
 }

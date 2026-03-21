@@ -37,8 +37,8 @@ const CARD_DATA = {
       "Access to all pro tools",
       "Priority support",
       "Advanced analytics",
-      "API access",
-      "Team collaboration (coming soon)",
+      "Custom build based on your request",
+      "Dedicated growth consultation",
     ],
     cta: "Get Pro",
     ctaVariant: "primary" as const,
@@ -55,7 +55,7 @@ const CARD_DATA = {
       "Priority & dedicated support",
       "Early access to new tools",
       "Founding member badge",
-      "Custom integrations (on request)",
+      "Custom build based on your request",
     ],
     cta: "Get Lifetime Access",
     ctaVariant: "outline" as const,
@@ -65,6 +65,7 @@ const CARD_DATA = {
 export function PricingCard({ variant, billingCycle = "monthly", onSelect, loading }: PricingCardProps) {
   const data = CARD_DATA[variant]
   const isPro = variant === "pro"
+  const isLifetime = variant === "lifetime"
 
   return (
     <div
@@ -80,17 +81,19 @@ export function PricingCard({ variant, billingCycle = "monthly", onSelect, loadi
           : "var(--bg-card)",
         border: isPro
           ? "1px solid rgba(0,168,255,0.5)"
+          : isLifetime
+          ? "1px solid rgba(0,229,255,0.3)"
           : "1px solid var(--border-default)",
       }}
     >
       {/* Most Popular badge */}
       {data.badge && (
-        <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
+        <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-10">
           <span
-            className="inline-block px-4 py-1 rounded-full text-xs font-bold text-white"
+            className="inline-block px-5 py-1.5 rounded-full text-xs font-bold text-white whitespace-nowrap"
             style={{
               background: "linear-gradient(135deg, #0066FF, #00FFD1)",
-              boxShadow: "0 0 20px rgba(0,102,255,0.4)",
+              boxShadow: "0 0 20px rgba(0,102,255,0.5)",
             }}
           >
             {data.badge}
@@ -108,8 +111,8 @@ export function PricingCard({ variant, billingCycle = "monthly", onSelect, loadi
       )}
 
       {/* Header */}
-      <div className="mb-6">
-        <h3 className="font-syne font-extrabold text-xl text-[var(--text-primary)] mb-1">
+      <div className="mb-6 mt-2">
+        <h3 className="font-extrabold text-xl text-[var(--text-primary)] mb-1">
           {data.name}
         </h3>
         <p className="text-sm text-[var(--text-muted)]">{data.description}</p>
@@ -119,11 +122,18 @@ export function PricingCard({ variant, billingCycle = "monthly", onSelect, loadi
       <div className="mb-6">
         <div className="flex items-baseline gap-2">
           <span
-            className="font-syne font-extrabold text-5xl"
+            className="font-extrabold text-5xl"
             style={
               isPro
                 ? {
                     background: "linear-gradient(135deg, #0066FF, #00FFD1)",
+                    WebkitBackgroundClip: "text",
+                    backgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                  }
+                : isLifetime
+                ? {
+                    background: "linear-gradient(135deg, #00E5FF, #00FFD1)",
                     WebkitBackgroundClip: "text",
                     backgroundClip: "text",
                     WebkitTextFillColor: "transparent",
@@ -147,7 +157,11 @@ export function PricingCard({ variant, billingCycle = "monthly", onSelect, loadi
             <div
               className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0"
               style={{
-                background: isPro ? "rgba(0,168,255,0.2)" : "rgba(0,168,255,0.1)",
+                background: isPro
+                  ? "rgba(0,168,255,0.2)"
+                  : isLifetime
+                  ? "rgba(0,229,255,0.15)"
+                  : "rgba(0,168,255,0.1)",
               }}
             >
               <Check size={11} className="text-[var(--accent-blue)]" />
@@ -163,11 +177,27 @@ export function PricingCard({ variant, billingCycle = "monthly", onSelect, loadi
         disabled={loading || variant === "free"}
         className={cn(
           "w-full h-12 rounded-xl font-semibold text-sm transition-all duration-300 relative overflow-hidden",
-          "disabled:opacity-50 disabled:pointer-events-none",
-          isPro
-            ? "text-white bg-[linear-gradient(135deg,#0066FF,#00FFD1)] hover:shadow-[0_0_30px_rgba(0,102,255,0.5)] hover:-translate-y-px"
-            : "text-[var(--text-primary)] border border-[var(--border-default)] hover:border-[var(--accent-blue)] hover:text-[var(--accent-blue)]"
+          "disabled:opacity-50 disabled:pointer-events-none"
         )}
+        style={
+          isPro
+            ? {
+                background: "linear-gradient(135deg, #0066FF, #00FFD1)",
+                color: "#fff",
+                border: "none",
+              }
+            : isLifetime
+            ? {
+                background: "transparent",
+                color: "var(--accent-cyan)",
+                border: "1px solid rgba(0,229,255,0.4)",
+              }
+            : {
+                background: "transparent",
+                color: "var(--text-muted)",
+                border: "1px solid var(--border-default)",
+              }
+        }
       >
         {loading ? (
           <span className="flex items-center justify-center gap-2">

@@ -9,50 +9,118 @@ import { ScrambleText } from "@/components/shared/ScrambleText"
 
 /* ── Marquee items ── */
 const TECH_ITEMS = [
-  "React",
-  "Next.js",
-  "Flutter",
-  "Node.js",
-  "Stripe",
-  "Convex",
-  "Three.js",
-  "Figma",
-  "AWS",
-  "Tailwind",
-  "TypeScript",
-  "PostgreSQL",
-  "Redis",
-  "Docker",
+  "React", "Next.js", "Flutter", "Node.js", "Stripe",
+  "Convex", "Three.js", "Figma", "AWS", "Tailwind",
+  "TypeScript", "PostgreSQL", "Redis", "Docker",
 ]
 
-/* ── Fade-in-up variants ── */
 const containerVariants: import("framer-motion").Variants = {
   hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.15,
-    },
-  },
+  visible: { transition: { staggerChildren: 0.15 } },
 }
 
 const itemVariants: import("framer-motion").Variants = {
   hidden: { opacity: 0, y: 28 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.65, ease: "easeInOut" },
-  },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.65, ease: "easeInOut" } },
 }
 
-/* ── Component ── */
+/* ── Particle canvas background ── */
+function ParticleCanvas() {
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+
+  useEffect(() => {
+    const canvas = canvasRef.current
+    if (!canvas) return
+    const ctx = canvas.getContext("2d")
+    if (!ctx) return
+
+    let animId: number
+    let particles: Array<{ x: number; y: number; vx: number; vy: number; radius: number; alpha: number }> = []
+
+    const resize = () => {
+      canvas.width = canvas.offsetWidth
+      canvas.height = canvas.offsetHeight
+    }
+
+    const init = () => {
+      resize()
+      particles = []
+      const count = Math.floor((canvas.width * canvas.height) / 15000)
+      for (let i = 0; i < count; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          vx: (Math.random() - 0.5) * 0.4,
+          vy: (Math.random() - 0.5) * 0.4,
+          radius: Math.random() * 1.5 + 0.5,
+          alpha: Math.random() * 0.5 + 0.2,
+        })
+      }
+    }
+
+    const draw = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
+
+      // Draw connections
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x
+          const dy = particles[i].y - particles[j].y
+          const dist = Math.sqrt(dx * dx + dy * dy)
+          if (dist < 120) {
+            ctx.beginPath()
+            ctx.strokeStyle = `rgba(0, 168, 255, ${(1 - dist / 120) * 0.15})`
+            ctx.lineWidth = 0.5
+            ctx.moveTo(particles[i].x, particles[i].y)
+            ctx.lineTo(particles[j].x, particles[j].y)
+            ctx.stroke()
+          }
+        }
+      }
+
+      // Draw particles
+      for (const p of particles) {
+        ctx.beginPath()
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2)
+        ctx.fillStyle = `rgba(0, 168, 255, ${p.alpha})`
+        ctx.fill()
+
+        p.x += p.vx
+        p.y += p.vy
+        if (p.x < 0 || p.x > canvas.width) p.vx *= -1
+        if (p.y < 0 || p.y > canvas.height) p.vy *= -1
+      }
+
+      animId = requestAnimationFrame(draw)
+    }
+
+    init()
+    draw()
+
+    const ro = new ResizeObserver(init)
+    ro.observe(canvas)
+
+    return () => {
+      cancelAnimationFrame(animId)
+      ro.disconnect()
+    }
+  }, [])
+
+  return (
+    <canvas
+      ref={canvasRef}
+      aria-hidden="true"
+      className="absolute inset-0 w-full h-full pointer-events-none"
+    />
+  )
+}
+
 export default function HeroSection() {
   const heroRef = useRef<HTMLElement>(null)
 
-  /* Parallax on scroll */
   useEffect(() => {
     const hero = heroRef.current
     if (!hero) return
-
     const handleScroll = () => {
       const scrollY = window.scrollY
       const content = hero.querySelector<HTMLDivElement>(".hero-content")
@@ -61,7 +129,6 @@ export default function HeroSection() {
         content.style.opacity = `${1 - scrollY / 700}`
       }
     }
-
     window.addEventListener("scroll", handleScroll, { passive: true })
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
@@ -72,10 +139,13 @@ export default function HeroSection() {
       className="relative min-h-screen flex flex-col overflow-hidden bg-[var(--bg-primary)]"
       aria-label="Hero"
     >
-      {/* ── Background: Glow Orbs ── */}
+      {/* Particle canvas */}
+      <ParticleCanvas />
+
+      {/* Glow Orbs */}
       <GlowOrbs preset="hero" />
 
-      {/* ── Background: Subtle CSS Grid Overlay ── */}
+      {/* Grid Overlay */}
       <div
         aria-hidden="true"
         className="absolute inset-0 pointer-events-none"
@@ -88,17 +158,16 @@ export default function HeroSection() {
         }}
       />
 
-      {/* ── Radial vignette ── */}
+      {/* Radial vignette */}
       <div
         aria-hidden="true"
         className="absolute inset-0 pointer-events-none"
         style={{
-          background:
-            "radial-gradient(ellipse 80% 60% at 50% 0%, transparent 40%, var(--bg-primary) 100%)",
+          background: "radial-gradient(ellipse 80% 60% at 50% 0%, transparent 40%, var(--bg-primary) 100%)",
         }}
       />
 
-      {/* ── Hero Content ── */}
+      {/* Hero Content */}
       <div className="relative z-10 flex flex-1 flex-col items-center justify-center px-4 pt-24 pb-32 text-center hero-content">
         <motion.div
           variants={containerVariants}
@@ -109,32 +178,22 @@ export default function HeroSection() {
           {/* Eyebrow */}
           <motion.p
             variants={itemVariants}
-            className="text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-[var(--accent-blue)] font-[family-name:var(--font-syne)]"
+            className="text-xs sm:text-sm font-semibold uppercase tracking-[0.2em] text-[var(--accent-blue)]"
           >
-            — Software Engineer &amp; Growth Partner —
+            — Ninja the Strategic Engineer & Your Growth Partner —
           </motion.p>
 
           {/* Main Headline */}
           <motion.h1
             variants={itemVariants}
-            className="font-[family-name:var(--font-syne)] font-extrabold leading-[1.05] tracking-[-0.02em]"
+            className="font-extrabold leading-[1.05] tracking-[-0.02em]"
             style={{ fontSize: "clamp(48px, 8vw, 96px)" }}
           >
             <span className="block text-[var(--text-primary)]">
-              <ScrambleText
-                text="We Build."
-                delay={300}
-                speed={35}
-                trigger="mount"
-              />
+              <ScrambleText text="We Build." delay={300} speed={35} trigger="mount" />
             </span>
             <span className="block text-[var(--text-primary)]">
-              <ScrambleText
-                text="We Scale."
-                delay={700}
-                speed={35}
-                trigger="mount"
-              />
+              <ScrambleText text="We Scale." delay={700} speed={35} trigger="mount" />
             </span>
             <span
               className="block"
@@ -145,19 +204,14 @@ export default function HeroSection() {
                 WebkitTextFillColor: "transparent",
               }}
             >
-              <ScrambleText
-                text="We Grow."
-                delay={1100}
-                speed={35}
-                trigger="mount"
-              />
+              <ScrambleText text="We Grow." delay={1100} speed={35} trigger="mount" />
             </span>
           </motion.h1>
 
           {/* Sub-headline */}
           <motion.p
             variants={itemVariants}
-            className="max-w-2xl text-base sm:text-lg lg:text-xl text-[var(--text-secondary)] leading-relaxed font-[family-name:var(--font-dm-sans)]"
+            className="max-w-2xl text-base sm:text-lg lg:text-xl text-[var(--text-secondary)] leading-relaxed"
           >
             From zero to launch, from growth to dominance —{" "}
             <span className="text-[var(--text-primary)] font-medium">Growthency</span>{" "}
@@ -184,7 +238,7 @@ export default function HeroSection() {
             </Link>
           </motion.div>
 
-          {/* Trust badge row */}
+          {/* Trust badges */}
           <motion.div
             variants={itemVariants}
             className="flex items-center gap-6 text-sm text-[var(--text-muted)] mt-1"
@@ -207,7 +261,7 @@ export default function HeroSection() {
         </motion.div>
       </div>
 
-      {/* ── Scroll indicator ── */}
+      {/* Scroll indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -223,20 +277,16 @@ export default function HeroSection() {
         </motion.div>
       </motion.div>
 
-      {/* ── Infinite Tech Marquee ── */}
-      <div className="absolute bottom-0 left-0 right-0 z-10 overflow-hidden border-t border-[var(--border-default)] bg-[var(--bg-surface)]/60 backdrop-blur-sm py-4">
+      {/* Infinite Tech Marquee */}
+      <div className="absolute bottom-0 left-0 right-0 z-10 overflow-hidden bg-[var(--bg-surface)]/60 backdrop-blur-sm py-4">
         <div className="flex whitespace-nowrap" style={{ animation: "marquee 30s linear infinite" }}>
           {[...TECH_ITEMS, ...TECH_ITEMS].map((item, i) => (
-            <span
-              key={i}
-              className="mx-6 text-sm font-medium text-[var(--text-muted)] tracking-wide"
-            >
+            <span key={i} className="mx-6 text-sm font-medium text-[var(--text-muted)] tracking-wide">
               {item}
               <span className="mx-6 text-[var(--border-glow)]">·</span>
             </span>
           ))}
         </div>
-
         <style>{`
           @keyframes marquee {
             0%   { transform: translateX(0); }

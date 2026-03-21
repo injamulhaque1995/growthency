@@ -88,7 +88,7 @@ export function Navbar() {
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
           scrolled
-            ? "backdrop-blur-md bg-[var(--bg-primary)]/80 border-b border-[var(--border-default)] shadow-[0_4px_24px_rgba(0,0,0,0.08)]"
+            ? "backdrop-blur-md bg-[var(--bg-primary)]/80 shadow-[0_4px_24px_rgba(0,0,0,0.08)]"
             : "bg-transparent"
         )}
       >

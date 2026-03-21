@@ -153,7 +153,7 @@ export function PricingSection() {
       </div>
 
       {/* Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch mb-20">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch mb-20 pt-6 overflow-visible">
         <PricingCard
           variant="free"
           billingCycle={billing}
