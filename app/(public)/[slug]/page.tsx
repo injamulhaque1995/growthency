@@ -240,7 +240,23 @@ function renderContent(content: string) {
   while (i < lines.length) {
     const line = lines[i]
 
-    if (line.startsWith("## ")) {
+    // Skip video/HTML div blocks
+    if (line.trimStart().startsWith("<div") || line.trimStart().startsWith("</div") ||
+        line.trimStart().startsWith("<iframe") || line.trimStart().startsWith("</iframe")) {
+      i++
+      continue
+    }
+
+    // Inline image: ![alt](url)
+    const imgMatch = line.match(/^!\[([^\]]*)\]\(([^)]+)\)/)
+    if (imgMatch) {
+      elements.push(
+        <div key={i} className="my-6 rounded-xl overflow-hidden">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={imgMatch[2]} alt={imgMatch[1]} className="w-full h-56 sm:h-72 object-cover rounded-xl" loading="lazy" />
+        </div>
+      )
+    } else if (line.startsWith("## ")) {
       elements.push(<h2 key={i} className="font-extrabold text-xl lg:text-2xl text-[#F0F4FF] mt-10 mb-4">{line.slice(3)}</h2>)
     } else if (line.startsWith("### ")) {
       elements.push(<h3 key={i} className="font-extrabold text-lg text-[#F0F4FF] mt-6 mb-3">{line.slice(4)}</h3>)
@@ -290,6 +306,7 @@ function renderContent(content: string) {
 
 function inlineMarkdown(text: string): string {
   return text
+    .replace(/!\[([^\]]*)\]\([^)]*\)/g, '') // remove image markdown (handled separately)
     .replace(/\*\*(.+?)\*\*/g, '<strong class="font-semibold text-[#F0F4FF]">$1</strong>')
     .replace(/`(.+?)`/g, '<code class="font-mono text-[#00E5FF] bg-[#0D1428] px-1 py-0.5 rounded text-xs">$1</code>')
     .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" class="text-[#00A8FF] hover:text-[#00E5FF] underline underline-offset-2 transition-colors" target="_blank" rel="noopener noreferrer">$1</a>')
@@ -478,7 +495,10 @@ export default async function SlugPage({
             <h1 className="font-extrabold text-3xl sm:text-4xl lg:text-5xl text-[#F0F4FF] leading-tight mb-6">{post.title}</h1>
             <p className="text-[#8899BB] text-base lg:text-lg leading-relaxed mb-8 max-w-2xl">{post.excerpt}</p>
             <div className="flex items-center gap-4">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#0066FF] to-[#00FFD1] flex items-center justify-center text-white font-bold shrink-0">{post.author.name[0]}</div>
+              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#0066FF] to-[#00FFD1] flex items-center justify-center shrink-0 p-1.5">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/icon.svg" alt="Growthency" className="w-full h-full object-contain" />
+              </div>
               <div>
                 <p className="text-sm font-medium text-[#F0F4FF]">{post.author.name}</p>
                 {publishedDate && <div className="flex items-center gap-1.5 text-xs text-[#4A5878]"><Calendar className="w-3 h-3" />{publishedDate}</div>}
@@ -510,7 +530,10 @@ export default async function SlugPage({
                 </div>
               </div>
               <div className="mt-6 p-5 bg-[#0A0F1E] border border-[#1A2440] rounded-2xl flex items-start gap-4">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#0066FF] to-[#00FFD1] flex items-center justify-center text-white font-bold text-lg shrink-0">{post.author.name[0]}</div>
+                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#0066FF] to-[#00FFD1] flex items-center justify-center shrink-0 p-2">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src="/icon.svg" alt="Growthency" className="w-full h-full object-contain" />
+                </div>
                 <div>
                   <p className="font-extrabold text-sm text-[#F0F4FF] mb-1">{post.author.name}</p>
                   <p className="text-xs text-[#8899BB] leading-relaxed">The Growthency team helps businesses launch, scale, and grow using modern software, AI tools, and proven digital strategy. We&apos;ve worked with 200+ startups and growing businesses worldwide.</p>

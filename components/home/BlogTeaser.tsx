@@ -70,10 +70,11 @@ function BlogCard({ post, index }: { post: MockPost; index: number }) {
         <div className="flex items-center justify-between pt-3 border-t border-[var(--border-default)] mt-auto">
           <div className="flex items-center gap-2">
             <div
-              className="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold text-white"
+              className="w-6 h-6 rounded-full flex items-center justify-center p-0.5"
               style={{ background: `linear-gradient(135deg, ${post.gradient.from}, ${post.gradient.to})` }}
             >
-              {post.author.initials}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/icon.svg" alt="Growthency" className="w-full h-full object-contain" />
             </div>
             <span className="text-xs text-[var(--text-muted)]">{post.author.name}</span>
           </div>

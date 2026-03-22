@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 import { ArrowRight, Clock, Calendar } from "lucide-react"
 import { Badge } from "@/components/ui/Badge"
 
@@ -13,189 +14,251 @@ export interface MockPost {
   readTime: number
   featured: boolean
   gradient: { from: string; to: string }
+  coverImage?: string
+  coverImageAlt?: string
 }
 
-/* ── Static mock posts ── */
+/* ── Static mock posts (sorted newest first) ── */
 export const MOCK_POSTS: MockPost[] = [
   {
-    slug: "how-to-launch-mvp-in-4-weeks",
-    title: "How to Launch a Production-Ready MVP in 4 Weeks",
+    slug: "saas-growth-strategies-2025",
+    title: "7 Proven SaaS Growth Strategies to Scale From $0 to $1M ARR",
     excerpt:
-      "Stop over-engineering your first version. Here's the exact process we use to ship MVPs quickly without accumulating technical debt that kills momentum.",
-    category: "Development",
-    author: { name: "Alex Rivera", initials: "AR" },
-    date: "March 15, 2025",
-    readTime: 8,
+      "Most SaaS founders plateau at $10K MRR. Here are the 7 growth strategies that the fastest-growing SaaS companies use to break through and scale to $1M ARR.",
+    category: "Business Growth",
+    author: { name: "Growthency Team", initials: "G" },
+    date: "March 20, 2025",
+    readTime: 12,
     featured: true,
     gradient: { from: "#0066FF", to: "#00FFD1" },
+    coverImage:
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80&fm=webp&fit=crop",
+    coverImageAlt: "SaaS growth strategies dashboard showing revenue metrics",
   },
   {
-    slug: "seo-strategy-that-actually-works-2025",
-    title: "The SEO Strategy That 10x'd Our Organic Traffic in 6 Months",
+    slug: "seo-for-startups",
+    title: "SEO for Startups: Rank #1 on Google Without a Big Budget",
     excerpt:
-      "Forget keyword stuffing and link farms. This is the modern SEO playbook — topical authority, programmatic pages, and content clusters that actually rank.",
+      "You don't need a $50K/month SEO budget to dominate Google. Here's the exact keyword research, content clustering, and link-building framework we use with early-stage startups.",
     category: "Marketing",
-    author: { name: "Jordan Mills", initials: "JM" },
-    date: "March 8, 2025",
+    author: { name: "Growthency Team", initials: "G" },
+    date: "March 15, 2025",
     readTime: 11,
     featured: false,
     gradient: { from: "#F59E0B", to: "#EF4444" },
+    coverImage:
+      "https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?w=800&q=80&fm=webp&fit=crop",
+    coverImageAlt: "SEO for startups keyword research and Google ranking strategy",
   },
   {
-    slug: "ai-tools-for-small-business-growth",
-    title: "7 AI Tools That Give Small Businesses an Unfair Advantage",
+    slug: "best-ai-tools-for-business-2025",
+    title: "Best AI Tools for Small Businesses in 2025: Automate, Scale, Grow",
     excerpt:
-      "Large companies have entire AI teams. Here's how small businesses can punch above their weight using the right AI tools — without the big budget.",
-    category: "Business Growth",
-    author: { name: "Alex Rivera", initials: "AR" },
-    date: "February 28, 2025",
-    readTime: 7,
+      "These 12 AI tools are giving small businesses an unfair advantage over larger competitors — from AI copywriting and customer service to data analysis and automation.",
+    category: "Tools",
+    author: { name: "Growthency Team", initials: "G" },
+    date: "March 10, 2025",
+    readTime: 10,
     featured: false,
     gradient: { from: "#8B5CF6", to: "#EC4899" },
+    coverImage:
+      "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&q=80&fm=webp&fit=crop",
+    coverImageAlt: "Best AI tools for small business automation and growth in 2025",
   },
   {
-    slug: "design-systems-that-scale",
-    title: "Building a Design System That Scales With Your Startup",
+    slug: "nextjs-performance-optimization",
+    title: "Next.js Performance Optimization: Achieve Perfect Lighthouse Scores",
     excerpt:
-      "A proper design system saves thousands of hours in the long run. Here's how we approach design tokens, component architecture, and documentation.",
+      "Core Web Vitals, image optimization, caching strategies, server components, and bundle splitting — everything you need to get a 100/100 Lighthouse score on your Next.js app.",
     category: "Development",
-    author: { name: "Sam Chen", initials: "SC" },
-    date: "February 20, 2025",
-    readTime: 9,
-    featured: false,
-    gradient: { from: "#06B6D4", to: "#0066FF" },
-  },
-  {
-    slug: "automating-client-onboarding",
-    title: "How We Automated Client Onboarding and Saved 15 Hours Per Week",
-    excerpt:
-      "Manual onboarding is expensive and error-prone. This is the full automation stack we built — from first form submission to onboarded client in under 10 minutes.",
-    category: "Business Growth",
-    author: { name: "Jordan Mills", initials: "JM" },
-    date: "February 10, 2025",
-    readTime: 6,
-    featured: false,
-    gradient: { from: "#10B981", to: "#0066FF" },
-  },
-  {
-    slug: "nextjs-performance-optimization-guide",
-    title: "Next.js Performance Optimization: The Complete 2025 Guide",
-    excerpt:
-      "Core Web Vitals, image optimization, caching strategies, bundle splitting — everything you need to achieve a perfect Lighthouse score on your Next.js app.",
-    category: "Development",
-    author: { name: "Alex Rivera", initials: "AR" },
-    date: "January 30, 2025",
+    author: { name: "Growthency Team", initials: "G" },
+    date: "March 5, 2025",
     readTime: 14,
     featured: false,
-    gradient: { from: "#F59E0B", to: "#8B5CF6" },
+    gradient: { from: "#06B6D4", to: "#0066FF" },
+    coverImage:
+      "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&q=80&fm=webp&fit=crop",
+    coverImageAlt: "Next.js performance optimization and Lighthouse score improvement",
   },
   {
-    slug: "social-media-growth-playbook",
-    title: "The Social Media Growth Playbook: 0 to 100K Followers",
+    slug: "startup-financial-planning",
+    title: "Startup Financial Planning: Build a Cash Flow Model That Keeps You Alive",
     excerpt:
-      "Stop posting randomly and hoping for the best. Here's the data-driven social media strategy that consistently grows accounts across every platform.",
+      "Most startups run out of money not because they aren't profitable — but because they mismanage cash flow. Here's how to build a financial model that gives you a real runway.",
+    category: "Finance",
+    author: { name: "Growthency Team", initials: "G" },
+    date: "February 28, 2025",
+    readTime: 9,
+    featured: false,
+    gradient: { from: "#10B981", to: "#0066FF" },
+    coverImage:
+      "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=800&q=80&fm=webp&fit=crop",
+    coverImageAlt: "Startup financial planning and cash flow management spreadsheet",
+  },
+  {
+    slug: "ecommerce-revenue-growth-case-study",
+    title: "Case Study: How We Scaled an E-Commerce Store from $5K to $50K/Month",
+    excerpt:
+      "A real-world breakdown of the exact marketing, SEO, automation, and product strategies we used to 10x a struggling e-commerce store's revenue in under 8 months.",
+    category: "Case Study",
+    author: { name: "Growthency Team", initials: "G" },
+    date: "February 20, 2025",
+    readTime: 13,
+    featured: false,
+    gradient: { from: "#F59E0B", to: "#8B5CF6" },
+    coverImage:
+      "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80&fm=webp&fit=crop",
+    coverImageAlt: "E-commerce revenue growth case study results dashboard",
+  },
+  {
+    slug: "business-automation-guide",
+    title: "Business Automation: Eliminate 20+ Hours of Manual Work Per Week",
+    excerpt:
+      "Stop doing repetitive tasks manually. This guide covers the exact automation stack — Zapier, Make, n8n, and AI agents — that growing businesses use to run leaner and faster.",
+    category: "Business Growth",
+    author: { name: "Growthency Team", initials: "G" },
+    date: "February 15, 2025",
+    readTime: 11,
+    featured: false,
+    gradient: { from: "#00FFD1", to: "#0066FF" },
+    coverImage:
+      "https://images.unsplash.com/photo-1553484771-371a605b060b?w=800&q=80&fm=webp&fit=crop",
+    coverImageAlt: "Business automation tools workflow eliminating manual work",
+  },
+  {
+    slug: "content-marketing-strategy",
+    title: "Content Marketing Strategy: Build a $0 Traffic Machine That Compounds",
+    excerpt:
+      "A content strategy that's working in 2025 looks nothing like it did 3 years ago. Here's the topical authority model that drives organic traffic without paid ads.",
     category: "Marketing",
-    author: { name: "Jordan Mills", initials: "JM" },
-    date: "January 20, 2025",
+    author: { name: "Growthency Team", initials: "G" },
+    date: "February 8, 2025",
     readTime: 10,
     featured: false,
     gradient: { from: "#EC4899", to: "#8B5CF6" },
+    coverImage:
+      "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&q=80&fm=webp&fit=crop",
+    coverImageAlt: "Content marketing strategy for organic traffic growth",
   },
   {
-    slug: "saas-pricing-psychology",
-    title: "SaaS Pricing Psychology: Why $9.99 Beats $10 Every Time",
+    slug: "build-saas-product-step-by-step",
+    title: "How to Build a SaaS Product from Scratch: A Complete Technical Guide",
     excerpt:
-      "Pricing is the highest-leverage decision in your SaaS. Discover the psychological principles and real-world tactics that top SaaS companies use to maximize revenue.",
-    category: "Business Growth",
-    author: { name: "Alex Rivera", initials: "AR" },
-    date: "January 12, 2025",
-    readTime: 9,
-    featured: false,
-    gradient: { from: "#0066FF", to: "#8B5CF6" },
-  },
-  {
-    slug: "react-server-components-guide",
-    title: "React Server Components: The Complete Practical Guide",
-    excerpt:
-      "RSC changes everything about how we build React apps. Here's what they actually are, when to use them, and how to avoid the most common pitfalls.",
+      "From idea validation to production deployment — this is the full technical stack, architecture decisions, and launch checklist we use to ship SaaS products in 8–12 weeks.",
     category: "Development",
-    author: { name: "Sam Chen", initials: "SC" },
-    date: "January 5, 2025",
-    readTime: 12,
-    featured: false,
-    gradient: { from: "#06B6D4", to: "#00E676" },
-  },
-  {
-    slug: "cold-email-outreach-that-converts",
-    title: "Cold Email Outreach That Actually Gets Replies in 2025",
-    excerpt:
-      "Spray-and-pray cold email is dead. Here's the hyper-personalized, AI-assisted outreach framework that's generating 40%+ reply rates for our clients.",
-    category: "Marketing",
-    author: { name: "Jordan Mills", initials: "JM" },
-    date: "December 28, 2024",
-    readTime: 8,
-    featured: false,
-    gradient: { from: "#F59E0B", to: "#10B981" },
-  },
-  {
-    slug: "product-market-fit-signals",
-    title: "How to Know When You've Actually Hit Product-Market Fit",
-    excerpt:
-      "Most founders think they have PMF when they don't. Here are the real signals — retention curves, NPS patterns, and organic word-of-mouth — that indicate true fit.",
-    category: "Business Growth",
-    author: { name: "Alex Rivera", initials: "AR" },
-    date: "December 18, 2024",
-    readTime: 7,
-    featured: false,
-    gradient: { from: "#00E676", to: "#0066FF" },
-  },
-  {
-    slug: "database-architecture-startups",
-    title: "Database Architecture Decisions That Will Save Your Startup",
-    excerpt:
-      "The database choices you make in week 1 will haunt you in year 3. Here's a pragmatic guide to picking the right database architecture for your startup stage.",
-    category: "Development",
-    author: { name: "Sam Chen", initials: "SC" },
-    date: "December 10, 2024",
-    readTime: 11,
+    author: { name: "Growthency Team", initials: "G" },
+    date: "February 1, 2025",
+    readTime: 15,
     featured: false,
     gradient: { from: "#8B5CF6", to: "#06B6D4" },
+    coverImage:
+      "https://images.unsplash.com/photo-1516116216624-53e697fedbea?w=800&q=80&fm=webp&fit=crop",
+    coverImageAlt: "Building a SaaS product from scratch technical guide",
   },
   {
-    slug: "google-ads-roi-framework",
-    title: "The Google Ads ROI Framework That Stopped Wasting Our Budget",
+    slug: "digital-marketing-roi",
+    title: "How to Calculate and Maximize ROI from Every Digital Marketing Channel",
     excerpt:
-      "We burned $50K on Google Ads before figuring this out. Now we use a strict ROI framework that ensures every dollar spent drives measurable return.",
-    category: "Marketing",
-    author: { name: "Jordan Mills", initials: "JM" },
-    date: "November 30, 2024",
-    readTime: 9,
+      "Stop guessing which marketing channels work. This ROI framework gives you a clear formula to measure, compare, and double down on the channels that actually move the needle.",
+    category: "Finance",
+    author: { name: "Growthency Team", initials: "G" },
+    date: "January 25, 2025",
+    readTime: 8,
     featured: false,
     gradient: { from: "#EF4444", to: "#F59E0B" },
+    coverImage:
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80&fm=webp&fit=crop",
+    coverImageAlt: "Digital marketing ROI calculation and channel performance analysis",
   },
   {
-    slug: "startup-hiring-guide",
-    title: "How to Hire Your First 10 Employees Without Making Costly Mistakes",
+    slug: "saas-organic-traffic-case-study",
+    title: "Case Study: 300% Organic Traffic Growth in 6 Months Through Topical SEO",
     excerpt:
-      "The first 10 hires define your company culture forever. Here's the hiring process, interview questions, and red flags we've learned over hundreds of hires.",
-    category: "Business Growth",
-    author: { name: "Alex Rivera", initials: "AR" },
-    date: "November 20, 2024",
-    readTime: 13,
+      "We took a SaaS client from 800 monthly visitors to 3,200 in 6 months without a single paid ad. Here's the exact topical SEO strategy, content calendar, and results.",
+    category: "Case Study",
+    author: { name: "Growthency Team", initials: "G" },
+    date: "January 18, 2025",
+    readTime: 12,
     featured: false,
-    gradient: { from: "#EC4899", to: "#F59E0B" },
+    gradient: { from: "#00E676", to: "#0066FF" },
+    coverImage:
+      "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=800&q=80&fm=webp&fit=crop",
+    coverImageAlt: "SaaS organic traffic growth case study Google Analytics dashboard",
   },
   {
-    slug: "typescript-patterns-production",
-    title: "TypeScript Patterns We Wish We Knew Before Going to Production",
+    slug: "project-management-tools-remote-teams",
+    title: "Top 10 Project Management Tools for Remote Teams in 2025",
     excerpt:
-      "Generic types, discriminated unions, and template literal types sound complex — but these patterns will make your codebase dramatically safer and more maintainable.",
-    category: "Development",
-    author: { name: "Sam Chen", initials: "SC" },
-    date: "November 10, 2024",
+      "Managing remote teams without the right tools is like building a house without a blueprint. Here's our ranked list of the best project management software for distributed teams.",
+    category: "Tools",
+    author: { name: "Growthency Team", initials: "G" },
+    date: "January 10, 2025",
+    readTime: 9,
+    featured: false,
+    gradient: { from: "#06B6D4", to: "#00E676" },
+    coverImage:
+      "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80&fm=webp&fit=crop",
+    coverImageAlt: "Project management tools for remote teams collaboration",
+  },
+  {
+    slug: "social-media-marketing-b2b",
+    title: "B2B Social Media Marketing: Generate Qualified Leads from LinkedIn",
+    excerpt:
+      "LinkedIn generates 80% of B2B leads from social media. Here's the posting strategy, content pillars, and outreach framework that fills our clients' pipelines with qualified prospects.",
+    category: "Marketing",
+    author: { name: "Growthency Team", initials: "G" },
+    date: "January 3, 2025",
     readTime: 10,
     featured: false,
     gradient: { from: "#0066FF", to: "#EC4899" },
+    coverImage:
+      "https://images.unsplash.com/photo-1611926653458-09294b3142bf?w=800&q=80&fm=webp&fit=crop",
+    coverImageAlt: "B2B social media marketing LinkedIn lead generation strategy",
+  },
+  {
+    slug: "product-market-fit-framework",
+    title: "Product-Market Fit: How to Validate Your Business Idea Before You Build",
+    excerpt:
+      "90% of startups fail because they build before validating. This framework gives you a step-by-step process to test your idea with real users and real money before writing a single line of code.",
+    category: "Business Growth",
+    author: { name: "Growthency Team", initials: "G" },
+    date: "December 26, 2024",
+    readTime: 11,
+    featured: false,
+    gradient: { from: "#8B5CF6", to: "#F59E0B" },
+    coverImage:
+      "https://images.unsplash.com/photo-1531973576160-7125cd663d86?w=800&q=80&fm=webp&fit=crop",
+    coverImageAlt: "Product market fit validation framework for startup ideas",
+  },
+  {
+    slug: "react-server-components-guide",
+    title: "React Server Components: The Complete Practical Guide for 2025",
+    excerpt:
+      "RSC changes everything about how we think about rendering in React. Here's what they actually are, when to use them vs client components, and the most common pitfalls to avoid.",
+    category: "Development",
+    author: { name: "Growthency Team", initials: "G" },
+    date: "December 18, 2024",
+    readTime: 13,
+    featured: false,
+    gradient: { from: "#F59E0B", to: "#0066FF" },
+    coverImage:
+      "https://images.unsplash.com/photo-1633356122102-3fe601e05bd2?w=800&q=80&fm=webp&fit=crop",
+    coverImageAlt: "React Server Components guide for modern web development",
+  },
+  {
+    slug: "startup-bootstrap-growth",
+    title: "Bootstrap Growth: Scale Your Startup Without Raising a Single Dollar",
+    excerpt:
+      "Venture capital is not the only path to scale. Here's the bootstrap growth playbook — revenue-based financing, strategic partnerships, and scrappy marketing — that keeps you in control.",
+    category: "Business Growth",
+    author: { name: "Growthency Team", initials: "G" },
+    date: "December 10, 2024",
+    readTime: 10,
+    featured: false,
+    gradient: { from: "#10B981", to: "#EC4899" },
+    coverImage:
+      "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&q=80&fm=webp&fit=crop",
+    coverImageAlt: "Bootstrap startup growth without venture capital funding",
   },
 ]
 
@@ -203,25 +266,45 @@ export const MOCK_POSTS: MockPost[] = [
 export function PostCard({ post }: { post: MockPost }) {
   return (
     <Link
-      href={`/blog/${post.slug}`}
+      href={`/${post.slug}`}
       className="group block rounded-2xl overflow-hidden relative transition-all duration-300 hover:-translate-y-1"
       style={{
         background: "var(--bg-card)",
         border: "1px solid var(--border-default)",
       }}
     >
-      {/* Gradient banner */}
-      <div
-        className="h-2 w-full"
-        style={{
-          background: `linear-gradient(90deg, ${post.gradient.from}, ${post.gradient.to})`,
-        }}
-      />
+      {/* Cover image or gradient banner */}
+      {post.coverImage ? (
+        <div className="relative h-48 overflow-hidden">
+          <Image
+            src={post.coverImage}
+            alt={post.coverImageAlt ?? post.title}
+            fill
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+          <div className="absolute bottom-3 left-4">
+            <Badge variant="blue" className="text-[10px]">
+              {post.category}
+            </Badge>
+          </div>
+        </div>
+      ) : (
+        <div
+          className="h-2 w-full"
+          style={{
+            background: `linear-gradient(90deg, ${post.gradient.from}, ${post.gradient.to})`,
+          }}
+        />
+      )}
 
       <div className="p-6">
-        <Badge variant="blue" className="text-xs mb-4">
-          {post.category}
-        </Badge>
+        {!post.coverImage && (
+          <Badge variant="blue" className="text-xs mb-4">
+            {post.category}
+          </Badge>
+        )}
 
         <h3 className="font-syne font-extrabold text-lg text-[var(--text-primary)] leading-snug mb-3 group-hover:text-[var(--accent-blue)] transition-colors duration-200">
           {post.title}
@@ -234,12 +317,13 @@ export function PostCard({ post }: { post: MockPost }) {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div
-              className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold text-white"
+              className="w-7 h-7 rounded-full flex items-center justify-center p-1"
               style={{
                 background: `linear-gradient(135deg, ${post.gradient.from}, ${post.gradient.to})`,
               }}
             >
-              {post.author.initials}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/icon.svg" alt="Growthency" className="w-full h-full object-contain" />
             </div>
             <span className="text-xs text-[var(--text-muted)]">{post.author.name}</span>
           </div>
@@ -248,10 +332,8 @@ export function PostCard({ post }: { post: MockPost }) {
               <Clock size={11} />
               {post.readTime} min
             </span>
-            <span className="flex items-center gap-1">
-              <Calendar size={11} />
-              {post.date}
-            </span>
+            <Calendar size={11} />
+            {post.date}
           </div>
         </div>
 
