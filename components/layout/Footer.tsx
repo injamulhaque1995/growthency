@@ -99,7 +99,7 @@ export function Footer() {
               {SERVICES.map((service) => (
                 <li key={service.slug}>
                   <Link
-                    href={`/services/${service.slug}`}
+                    href={`/${service.slug}`}
                     className="text-[#8899BB] hover:text-[#00A8FF] text-sm transition-colors duration-200 group flex items-center gap-1.5"
                   >
                     <span className="w-0 group-hover:w-3 overflow-hidden transition-all duration-200 opacity-0 group-hover:opacity-100">

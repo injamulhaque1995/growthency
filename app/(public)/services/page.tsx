@@ -50,7 +50,7 @@ function ServiceCard({
 
   return (
     <Link
-      href={`/services/${service.slug}`}
+      href={`/${service.slug}`}
       className="group block rounded-2xl p-8 relative overflow-hidden transition-all duration-300 hover:-translate-y-1"
       style={{
         background: "var(--bg-card)",
