@@ -2,11 +2,12 @@
 
 import { useState } from "react"
 import Link from "next/link"
-import { Linkedin, Twitter, Github, Youtube, Instagram, ArrowRight, CheckCircle2 } from "lucide-react"
+import { ArrowRight, CheckCircle2 } from "lucide-react"
+import { FooterSocialIcons } from "@/components/ui/SocialIcons"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
-import { SERVICES, SOCIAL_LINKS, SITE_TAGLINE } from "@/lib/constants"
+import { SERVICES, SITE_TAGLINE } from "@/lib/constants"
 import { cn } from "@/lib/utils"
 
 /* ── Newsletter schema ── */
@@ -36,13 +37,6 @@ function FooterLogo() {
   )
 }
 
-const SOCIAL_ICONS = [
-  { key: "linkedin", Icon: Linkedin, label: "LinkedIn", href: SOCIAL_LINKS.linkedin },
-  { key: "twitter", Icon: Twitter, label: "Twitter / X", href: SOCIAL_LINKS.twitter },
-  { key: "github", Icon: Github, label: "GitHub", href: SOCIAL_LINKS.github },
-  { key: "youtube", Icon: Youtube, label: "YouTube", href: SOCIAL_LINKS.youtube },
-  { key: "instagram", Icon: Instagram, label: "Instagram", href: SOCIAL_LINKS.instagram },
-]
 
 const COMPANY_LINKS = [
   { label: "About", href: "/about" },
@@ -92,21 +86,8 @@ export function Footer() {
             <p className="text-[#8899BB] text-sm leading-relaxed mb-6 max-w-[220px]">
               {SITE_TAGLINE}
             </p>
-            <p className="text-[#4A5878] text-xs mb-4">Follow us</p>
-            <div className="flex items-center gap-3">
-              {SOCIAL_ICONS.map(({ key, Icon, label, href }) => (
-                <a
-                  key={key}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={label}
-                  className="w-8 h-8 rounded-lg flex items-center justify-center text-[#4A5878] hover:text-[#00A8FF] hover:bg-[#0D1428] transition-all duration-200 border border-[#1A2440] hover:border-[rgba(0,168,255,0.3)]"
-                >
-                  <Icon size={15} />
-                </a>
-              ))}
-            </div>
+            <p className="text-[#4A5878] text-xs mb-3">Follow us</p>
+            <FooterSocialIcons />
           </div>
 
           {/* ── Col 2: Services ── */}

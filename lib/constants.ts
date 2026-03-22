@@ -141,11 +141,11 @@ export const NAV_LINKS = [
 ───────────────────────────────────────── */
 
 export const SOCIAL_LINKS = {
+  facebook: "https://facebook.com/growthency",
   linkedin: "https://linkedin.com/company/growthency",
-  twitter: "https://twitter.com/growthency",
-  github: "https://github.com/growthency",
-  youtube: "https://youtube.com/@growthency",
   instagram: "https://instagram.com/growthency",
+  tiktok: "https://tiktok.com/@growthency",
+  youtube: "https://youtube.com/@growthency",
 } as const
 
 /* ─────────────────────────────────────────

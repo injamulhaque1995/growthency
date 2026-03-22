@@ -1,7 +1,8 @@
 import type { Metadata } from "next"
-import { Mail, Phone, MapPin, Clock, Linkedin, Twitter, Github } from "lucide-react"
-import { SITE_NAME, SITE_URL, SOCIAL_LINKS } from "@/lib/constants"
+import { Mail, Phone, MapPin, Clock } from "lucide-react"
+import { SITE_NAME, SITE_URL } from "@/lib/constants"
 import { ContactForm } from "@/components/contact/ContactForm"
+import { ContactSocialLinks } from "@/components/ui/SocialIcons"
 
 /* ── Metadata ── */
 export const metadata: Metadata = {
@@ -143,53 +144,10 @@ export default function ContactPage() {
                 border: "1px solid var(--border-default)",
               }}
             >
-              <h3 className="font-syne font-bold text-lg text-[var(--text-primary)] mb-5">
+              <h3 className="font-bold text-lg text-[var(--text-primary)] mb-5">
                 Follow Us
               </h3>
-              <div className="flex flex-wrap gap-3">
-                <a
-                  href={SOCIAL_LINKS.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2.5 px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 hover:-translate-y-0.5"
-                  style={{
-                    background: "rgba(0,168,255,0.08)",
-                    border: "1px solid var(--border-default)",
-                    color: "var(--text-secondary)",
-                  }}
-                >
-                  <Linkedin size={15} />
-                  LinkedIn
-                </a>
-                <a
-                  href={SOCIAL_LINKS.twitter}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2.5 px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 hover:-translate-y-0.5"
-                  style={{
-                    background: "rgba(0,168,255,0.08)",
-                    border: "1px solid var(--border-default)",
-                    color: "var(--text-secondary)",
-                  }}
-                >
-                  <Twitter size={15} />
-                  Twitter / X
-                </a>
-                <a
-                  href={SOCIAL_LINKS.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2.5 px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 hover:-translate-y-0.5"
-                  style={{
-                    background: "rgba(0,168,255,0.08)",
-                    border: "1px solid var(--border-default)",
-                    color: "var(--text-secondary)",
-                  }}
-                >
-                  <Github size={15} />
-                  GitHub
-                </a>
-              </div>
+              <ContactSocialLinks />
             </div>
 
             {/* Quick note */}
