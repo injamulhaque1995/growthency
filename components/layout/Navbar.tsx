@@ -24,7 +24,7 @@ function ClerkDesktopAuth() {
       <SignInButton mode="modal">
         <button className="btn-ghost text-sm px-4 py-2">Sign In</button>
       </SignInButton>
-      <Link href="https://tidycal.com/growthency/15-minute-meeting" target="_blank" rel="noopener noreferrer" className="btn-primary text-sm px-4 py-2">Book a Call</Link>
+      <Link href="https://growthency.com/15-minute-meeting" target="_blank" rel="noopener noreferrer" className="btn-primary text-sm px-4 py-2">Book a Call</Link>
     </>
   )
 }
@@ -40,7 +40,7 @@ function ClerkMobileAuth() {
       <SignInButton mode="modal">
         <button className="btn-ghost w-full text-sm py-2.5">Sign In</button>
       </SignInButton>
-      <Link href="https://tidycal.com/growthency/15-minute-meeting" target="_blank" rel="noopener noreferrer" className="btn-primary w-full text-sm py-2.5 text-center">Book a Call</Link>
+      <Link href="https://growthency.com/15-minute-meeting" target="_blank" rel="noopener noreferrer" className="btn-primary w-full text-sm py-2.5 text-center">Book a Call</Link>
     </div>
   )
 }
@@ -50,7 +50,7 @@ function FallbackDesktopAuth() {
   return (
     <>
       <Link href="/sign-in" className="btn-ghost text-sm px-4 py-2">Sign In</Link>
-      <Link href="https://tidycal.com/growthency/15-minute-meeting" target="_blank" rel="noopener noreferrer" className="btn-primary text-sm px-4 py-2">Book a Call</Link>
+      <Link href="https://growthency.com/15-minute-meeting" target="_blank" rel="noopener noreferrer" className="btn-primary text-sm px-4 py-2">Book a Call</Link>
     </>
   )
 }
@@ -58,7 +58,7 @@ function FallbackMobileAuth() {
   return (
     <div className="p-4 border-t border-[var(--border-default)] flex flex-col gap-2">
       <Link href="/sign-in" className="btn-ghost w-full text-sm py-2.5 text-center">Sign In</Link>
-      <Link href="https://tidycal.com/growthency/15-minute-meeting" target="_blank" rel="noopener noreferrer" className="btn-primary w-full text-sm py-2.5 text-center">Book a Call</Link>
+      <Link href="https://growthency.com/15-minute-meeting" target="_blank" rel="noopener noreferrer" className="btn-primary w-full text-sm py-2.5 text-center">Book a Call</Link>
     </div>
   )
 }
