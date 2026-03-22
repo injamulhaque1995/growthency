@@ -23,13 +23,13 @@ export const PLANS = {
   },
   YEARLY: {
     name: "Pro Yearly",
-    price: 99,
+    price: 79,
     toolUsagePerDay: Infinity,
     stripeId: process.env.NEXT_PUBLIC_STRIPE_YEARLY_PRICE_ID,
   },
   LIFETIME: {
     name: "Lifetime",
-    price: 199,
+    price: 189,
     toolUsagePerDay: Infinity,
     stripeId: process.env.NEXT_PUBLIC_STRIPE_LIFETIME_PRICE_ID,
   },
