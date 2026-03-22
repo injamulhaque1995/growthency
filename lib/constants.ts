@@ -134,6 +134,7 @@ export const NAV_LINKS = [
   { label: "Blog", href: "/blog" },
   { label: "Pricing", href: "/pricing" },
   { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
 ] as const
 
 /* ─────────────────────────────────────────
