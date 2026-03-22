@@ -10,10 +10,9 @@ export default function BookingPage() {
 
   useEffect(() => setMounted(true), [])
 
-  // Use dark TidyCal theme when site is in dark mode
-  // Replace "dark" below with your actual TidyCal dark theme slug after creating it
+  // Dark theme ID 425432 = "Growthency Dark" in TidyCal
   const embedPath = mounted && resolvedTheme === "dark"
-    ? "growthency/15-minute-meeting?theme=dark"
+    ? "growthency/15-minute-meeting?theme=425432"
     : "growthency/15-minute-meeting"
 
   return (
