@@ -1,6 +1,7 @@
 "use client"
 
-import { useRef, useState } from "react"
+import { useState } from "react"
+import Image from "next/image"
 import { motion } from "framer-motion"
 import { Star } from "lucide-react"
 import { SectionHeader } from "@/components/shared/SectionHeader"
@@ -16,7 +17,7 @@ const TESTIMONIALS = [
       "Growthency transformed our digital presence completely. The web app they built exceeded all expectations — sleek, fast, and users love it.",
     rating: 5,
     service: "Web App Development",
-    initials: "SJ",
+    photo: "https://randomuser.me/api/portraits/women/44.jpg",
     color: "#0066FF",
   },
   {
@@ -27,7 +28,7 @@ const TESTIMONIALS = [
       "We went from idea to App Store in 8 weeks. The Flutter app runs perfectly on both iOS and Android. Incredible work ethic and communication.",
     rating: 5,
     service: "Mobile App Development",
-    initials: "MR",
+    photo: "https://randomuser.me/api/portraits/men/32.jpg",
     color: "#00A8FF",
   },
   {
@@ -38,7 +39,7 @@ const TESTIMONIALS = [
       "Our organic traffic tripled in 4 months after partnering with Growthency. Their SEO and content strategy is genuinely world-class.",
     rating: 5,
     service: "Digital Marketing",
-    initials: "AP",
+    photo: "https://randomuser.me/api/portraits/women/65.jpg",
     color: "#00FFD1",
   },
   {
@@ -49,7 +50,7 @@ const TESTIMONIALS = [
       "The AI integration they built into our product cut our manual processing time by 70%. ROI on this engagement was off the charts.",
     rating: 5,
     service: "AI Integration",
-    initials: "DC",
+    photo: "https://randomuser.me/api/portraits/men/41.jpg",
     color: "#7B61FF",
   },
   {
@@ -60,7 +61,7 @@ const TESTIMONIALS = [
       "The UI/UX redesign increased our conversion rate from 2.3% to 8.7%. Growthency truly understands what makes users click.",
     rating: 5,
     service: "UI/UX Design",
-    initials: "EW",
+    photo: "https://randomuser.me/api/portraits/women/28.jpg",
     color: "#FF6B6B",
   },
 ]
@@ -104,12 +105,18 @@ function TestimonialCard({ t }: { t: (typeof TESTIMONIALS)[number] }) {
 
       {/* Header row */}
       <div className="flex items-center gap-3">
-        {/* Avatar initials */}
+        {/* Avatar photo */}
         <div
-          className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 text-sm font-bold text-white"
-          style={{ background: `linear-gradient(135deg, ${t.color}, ${t.color}99)` }}
+          className="w-10 h-10 rounded-full flex-shrink-0 overflow-hidden ring-2"
+          style={{ ringColor: t.color, boxShadow: `0 0 0 2px ${t.color}66` }}
         >
-          {t.initials}
+          <Image
+            src={t.photo}
+            alt={t.name}
+            width={40}
+            height={40}
+            className="w-full h-full object-cover"
+          />
         </div>
         <div>
           <p className="font-[family-name:var(--font-syne)] font-extrabold text-sm text-[var(--text-primary)] leading-snug">

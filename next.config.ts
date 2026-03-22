@@ -8,6 +8,15 @@ const nextConfig: NextConfig = {
       { source: "/services/:slug", destination: "/:slug", permanent: true },
     ]
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "randomuser.me",
+        pathname: "/api/portraits/**",
+      },
+    ],
+  },
 };
 
 export default nextConfig;
