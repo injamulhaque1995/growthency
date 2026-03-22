@@ -56,12 +56,13 @@ function FeaturedPost({ post }: { post: MockPost }) {
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <div
-              className="w-9 h-9 rounded-full flex items-center justify-center text-sm font-bold text-white"
+              className="w-9 h-9 rounded-full flex items-center justify-center p-1.5"
               style={{
                 background: `linear-gradient(135deg, ${post.gradient.from}, ${post.gradient.to})`,
               }}
             >
-              {post.author.initials}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/icon.svg" alt="Growthency" className="w-full h-full object-contain" />
             </div>
             <div>
               <p className="text-sm font-medium text-[var(--text-primary)]">{post.author.name}</p>
