@@ -369,3 +369,8 @@
   outline-offset: 3px;
   border-radius: 4px;
 }
+
+/* Hide TidyCal owner-only theme editor toggle button from embedded booking page */
+button.theme-editor-sidebar-toggle.btn.btn-sm.position-absolute.btn-primary.border-white {
+  display: none;
+}
