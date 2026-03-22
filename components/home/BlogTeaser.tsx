@@ -1,59 +1,19 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { motion } from "framer-motion"
-import { ArrowRight, Clock, Calendar, User } from "lucide-react"
+import { ArrowRight, Clock, Calendar } from "lucide-react"
 import { SectionHeader } from "@/components/shared/SectionHeader"
 import { Badge } from "@/components/ui/Badge"
+import type { MockPost } from "@/app/(public)/blog/blog-data"
 
-/* ── Mock blog posts ── */
-const MOCK_POSTS = [
-  {
-    title: "How to Scale Your Digital Business in 2025",
-    slug: "how-to-scale-digital-business-2025",
-    category: "Business Growth",
-    readTime: "5 min read",
-    excerpt:
-      "Discover the proven frameworks and tools that fast-growing businesses use to break through plateaus and unlock the next stage of growth.",
-    date: "March 15, 2025",
-    author: "Growthency Team",
-    gradientFrom: "#0066FF",
-    gradientTo: "#00FFD1",
-  },
-  {
-    title: "Building AI-Powered SaaS Products: A Complete Guide",
-    slug: "building-ai-powered-saas-products",
-    category: "Development",
-    readTime: "8 min read",
-    excerpt:
-      "From prompt engineering to production-ready pipelines — everything you need to integrate AI into your next SaaS product effectively.",
-    date: "March 8, 2025",
-    author: "Growthency Team",
-    gradientFrom: "#7B61FF",
-    gradientTo: "#00A8FF",
-  },
-  {
-    title: "UI Design Principles That Skyrocket Conversions",
-    slug: "ui-design-principles-for-conversions",
-    category: "Design",
-    readTime: "6 min read",
-    excerpt:
-      "The difference between a 2% and 12% conversion rate often comes down to five key UI principles. Here's how to implement them.",
-    date: "February 28, 2025",
-    author: "Growthency Team",
-    gradientFrom: "#FF6B6B",
-    gradientTo: "#FFB300",
-  },
-]
+import { MOCK_POSTS as ALL_POSTS } from "@/app/(public)/blog/blog-data"
+
+const MOCK_POSTS = ALL_POSTS.slice(0, 3)
 
 /* ── Single blog card ── */
-function BlogCard({
-  post,
-  index,
-}: {
-  post: (typeof MOCK_POSTS)[number]
-  index: number
-}) {
+function BlogCard({ post, index }: { post: MockPost; index: number }) {
   return (
     <motion.article
       initial={{ opacity: 0, y: 32 }}
@@ -61,108 +21,68 @@ function BlogCard({
       viewport={{ once: true, margin: "-40px" }}
       transition={{ duration: 0.55, delay: index * 0.1, ease: [0.4, 0, 0.2, 1] }}
       className="group relative rounded-[var(--radius-card)] overflow-hidden flex flex-col transition-all duration-300 hover:-translate-y-2"
-      style={{
-        background: "var(--bg-card)",
-        border: "1px solid var(--border-default)",
-        boxShadow: "none",
-      }}
+      style={{ background: "var(--bg-card)", border: "1px solid var(--border-default)" }}
     >
-      {/* Hover shadow */}
       <div
         aria-hidden="true"
         className="absolute inset-0 rounded-[var(--radius-card)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
         style={{ boxShadow: "0 8px 40px rgba(0,0,0,0.15), inset 0 0 0 1px var(--border-glow)" }}
       />
 
-      {/* Gradient top border */}
-      <div
-        aria-hidden="true"
-        className="h-1 w-full flex-shrink-0"
-        style={{
-          background: `linear-gradient(90deg, ${post.gradientFrom}, ${post.gradientTo})`,
-        }}
-      />
-
-      {/* Mock image placeholder */}
-      <div
-        className="relative h-44 overflow-hidden flex-shrink-0"
-        style={{ background: "var(--bg-surface)" }}
-      >
-        {/* Gradient bg as placeholder */}
-        <div
-          className="absolute inset-0 transition-transform duration-500 group-hover:scale-105"
-          style={{
-            background: `linear-gradient(135deg, ${post.gradientFrom}22, ${post.gradientTo}11)`,
-          }}
-        />
-        {/* Decorative pattern */}
-        <div
-          className="absolute inset-0 opacity-30"
-          style={{
-            backgroundImage: `
-              linear-gradient(${post.gradientFrom}18 1px, transparent 1px),
-              linear-gradient(90deg, ${post.gradientFrom}18 1px, transparent 1px)
-            `,
-            backgroundSize: "30px 30px",
-          }}
-        />
-        {/* Category overlay */}
+      {/* Cover image */}
+      <div className="relative h-48 overflow-hidden flex-shrink-0">
+        {post.coverImage ? (
+          <Image
+            src={post.coverImage}
+            alt={post.coverImageAlt ?? post.title}
+            fill
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          />
+        ) : (
+          <div
+            className="absolute inset-0"
+            style={{ background: `linear-gradient(135deg, ${post.gradient.from}33, ${post.gradient.to}11)` }}
+          />
+        )}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
         <div className="absolute bottom-3 left-4">
-          <Badge variant="blue" className="text-[10px]">
-            {post.category}
-          </Badge>
+          <Badge variant="blue" className="text-[10px]">{post.category}</Badge>
         </div>
       </div>
 
       {/* Content */}
       <div className="flex flex-col gap-3 p-5 flex-1">
-        {/* Meta row */}
-        <div className="flex items-center gap-3 text-xs text-[var(--text-muted)] font-[family-name:var(--font-dm-sans)]">
-          <span className="flex items-center gap-1">
-            <Calendar size={12} />
-            {post.date}
-          </span>
+        <div className="flex items-center gap-3 text-xs text-[var(--text-muted)]">
+          <span className="flex items-center gap-1"><Calendar size={12} />{post.date}</span>
           <span className="w-px h-3 bg-[var(--border-default)]" />
-          <span className="flex items-center gap-1">
-            <Clock size={12} />
-            {post.readTime}
-          </span>
+          <span className="flex items-center gap-1"><Clock size={12} />{post.readTime} min</span>
         </div>
 
-        {/* Title */}
         <h3 className="font-[family-name:var(--font-syne)] font-extrabold text-base sm:text-lg text-[var(--text-primary)] leading-snug group-hover:text-[var(--accent-blue)] transition-colors duration-200">
           {post.title}
         </h3>
 
-        {/* Excerpt */}
-        <p className="text-sm text-[var(--text-muted)] leading-relaxed font-[family-name:var(--font-dm-sans)] flex-1">
+        <p className="text-sm text-[var(--text-muted)] leading-relaxed flex-1 line-clamp-3">
           {post.excerpt}
         </p>
 
-        {/* Footer */}
         <div className="flex items-center justify-between pt-3 border-t border-[var(--border-default)] mt-auto">
           <div className="flex items-center gap-2">
             <div
               className="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold text-white"
-              style={{
-                background: `linear-gradient(135deg, ${post.gradientFrom}, ${post.gradientTo})`,
-              }}
+              style={{ background: `linear-gradient(135deg, ${post.gradient.from}, ${post.gradient.to})` }}
             >
-              <User size={11} />
+              {post.author.initials}
             </div>
-            <span className="text-xs text-[var(--text-muted)] font-[family-name:var(--font-dm-sans)]">
-              {post.author}
-            </span>
+            <span className="text-xs text-[var(--text-muted)]">{post.author.name}</span>
           </div>
           <Link
-            href={`/blog/${post.slug}`}
+            href={`/${post.slug}`}
             className="flex items-center gap-1 text-xs font-medium text-[var(--accent-blue)] hover:text-[var(--accent-cyan)] transition-colors group/link"
           >
             Read More
-            <ArrowRight
-              size={12}
-              className="transition-transform duration-200 group-hover/link:translate-x-1"
-            />
+            <ArrowRight size={12} className="transition-transform duration-200 group-hover/link:translate-x-1" />
           </Link>
         </div>
       </div>

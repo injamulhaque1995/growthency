@@ -4,7 +4,7 @@ import { useState } from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { PostCard, type MockPost } from "./blog-data"
 
-const CATEGORIES = ["All", "Business Growth", "Development", "Marketing"]
+const CATEGORIES = ["All", "Business Growth", "Development", "Marketing", "Tools", "Finance", "Case Study"]
 const PER_PAGE = 9
 
 export function BlogFilterClient({ posts }: { posts: MockPost[] }) {
