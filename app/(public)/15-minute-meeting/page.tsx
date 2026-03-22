@@ -2,7 +2,6 @@
 
 import { useTheme } from "next-themes"
 import { useEffect, useState } from "react"
-import Script from "next/script"
 
 export default function BookingPage() {
   const { resolvedTheme } = useTheme()
@@ -11,9 +10,9 @@ export default function BookingPage() {
   useEffect(() => setMounted(true), [])
 
   // Dark theme ID 425432 = "Growthency Dark" in TidyCal
-  const embedPath = mounted && resolvedTheme === "dark"
-    ? "growthency/15-minute-meeting?theme=425432"
-    : "growthency/15-minute-meeting"
+  const src = mounted && resolvedTheme === "dark"
+    ? "https://tidycal.com/growthency/15-minute-meeting?theme=425432"
+    : "https://tidycal.com/growthency/15-minute-meeting"
 
   return (
     <div className="min-h-screen bg-[var(--bg-primary)] flex flex-col">
@@ -41,26 +40,26 @@ export default function BookingPage() {
         </p>
       </div>
 
-      {/* TidyCal embed — re-mounts when theme changes */}
+      {/* TidyCal iframe — stable across theme switches */}
       <div className="flex-1 w-full max-w-4xl mx-auto px-4 pb-16">
         <div
           className="rounded-2xl overflow-hidden"
           style={{ border: "1px solid var(--border-default)" }}
         >
           {mounted && (
-            <div
-              key={embedPath}
-              className="tidycal-embed"
-              data-path={embedPath}
+            <iframe
+              key={src}
+              src={src}
+              width="100%"
+              height="900"
+              frameBorder="0"
+              title="Book a Free 15-Min Strategy Call"
+              loading="lazy"
+              style={{ display: "block" }}
             />
           )}
         </div>
       </div>
-
-      <Script
-        src="https://asset-tidycal.b-cdn.net/js/embed.js"
-        strategy="afterInteractive"
-      />
     </div>
   )
 }
