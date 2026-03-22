@@ -107,8 +107,8 @@ function TestimonialCard({ t }: { t: (typeof TESTIMONIALS)[number] }) {
       <div className="flex items-center gap-3">
         {/* Avatar photo */}
         <div
-          className="w-10 h-10 rounded-full flex-shrink-0 overflow-hidden ring-2"
-          style={{ ringColor: t.color, boxShadow: `0 0 0 2px ${t.color}66` }}
+          className="w-10 h-10 rounded-full flex-shrink-0 overflow-hidden"
+          style={{ boxShadow: `0 0 0 2px ${t.color}66` }}
         >
           <Image
             src={t.photo}
